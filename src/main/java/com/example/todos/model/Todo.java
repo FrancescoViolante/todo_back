@@ -22,7 +22,7 @@ public class Todo {
     private String description;
 
     @Column(name = "targetdate")
-    private LocalDate targetdate;
+    private LocalDate targetDate;
 
     @Column(name = "done")
     private boolean done;
@@ -30,11 +30,11 @@ public class Todo {
     public Todo() {
     }
 
-    public Todo(Long id, String username, String description, LocalDate targetdate, boolean done) {
+    public Todo(Long id, String username, String description, LocalDate targetDate, boolean done) {
         this.id = id;
         this.username = username;
         this.description = description;
-        this.targetdate = targetdate;
+        this.targetDate = targetDate;
         this.done = done;
     }
 
@@ -62,13 +62,12 @@ public class Todo {
         this.description = description;
     }
 
-
-    public LocalDate getTargetdate() {
-        return targetdate;
+    public LocalDate getTargetDate() {
+        return targetDate;
     }
 
-    public void setTargetDate(LocalDate targetdate) {
-        this.targetdate = targetdate;
+    public void setTargetDate(LocalDate targetDate) {
+        this.targetDate = targetDate;
     }
 
     public boolean isDone() {

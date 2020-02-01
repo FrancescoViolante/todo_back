@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("rest")
 public class TodoController {
@@ -23,13 +23,33 @@ public class TodoController {
         return todoService.findById(id);
     }
 
-    @PostMapping(path = "/todo")
-    public TodoDto createTodo(@RequestBody TodoDto todoDto) {
 
-        return todoService.createTodo(todoDto);
+    @PostMapping(path = "/todo")
+    public ResponseEntity<TodoDto> createTodo(@RequestBody TodoDto todoDto) {
+
+        //I put username hardcore for the moment then it will be put by frontend
+        todoDto.setUsername("username");
+        return ResponseEntity.ok(todoService.createTodo(todoDto));
     }
 
-    @PutMapping(path ="/todo")
+    /*
+        for post, we give back the Url of the new resource created
+
+
+    @PostMapping(path = "/todo")
+    public ResponseEntity<Void> createTodo2(@RequestBody TodoDto todoDto) {
+
+        TodoDto todoDtoCrreated = todoService.createTodo(todoDto);
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}").buildAndExpand(todoDtoCrreated.getId()).toUri();
+
+        return ResponseEntity.created(uri).build();
+
+    }
+    */
+
+    @PutMapping(path = "/todo")
     public ResponseEntity<TodoDto> updateTodo(@RequestBody TodoDto todoDto) {
 
         return ResponseEntity.ok(todoService.updateTodo(todoDto));
